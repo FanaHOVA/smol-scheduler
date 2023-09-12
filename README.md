@@ -6,6 +6,8 @@ It uses GPT-4; it will not work well with GPT-3.5 or Claude: https://twitter.com
 
 # Usage
 
+## Offering times
+
 Run as-is to return ALL availability in your calendar:
 
 ```
@@ -54,6 +56,33 @@ Please let me know which time slot works best for you, and I'll make sure to fit
 
 Best regards,
 ```
+
+## Confirming times
+
+If you received times and want to confirm which slots you're available, you can use the `--confirm` flag:
+
+```
+$ python smol-scheduler.py --confirm --user_input "Hi All -
+
+We are looking to potentially move the NextGen Board meeting to the week following next. Could you please reply to this email if any or all of the below times would work for you instead?
+
+September 26: 12:30 - 1:30 Pacific
+September 27: 1:30 - 2:30 Pacific
+September 27: 2-3 Pacific
+
+Thank you,
+Nicole"
+
+Based on your schedule, you are available for the following time slots proposed for the NextGen Board meeting:
+
+September 26: 12:30 - 1:30 Pacific
+September 27: 1:30 - 2:30 Pacific
+September 27: 2-3 Pacific
+
+On September 26, your schedule frees up after 12:55 Pacific, so the 12:30 slot might be slightly tight but doable. On September 27, your calendar seems clear, so both the 1:30 - 2:30 Pacific and 2-3 Pacific slots would work for you.
+```
+
+I put this example as it sometimes tries to double book you, so be careful!
 
 # Setup
 

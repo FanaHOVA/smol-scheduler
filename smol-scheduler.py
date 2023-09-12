@@ -15,6 +15,8 @@ import argparse
 
 parser = argparse.ArgumentParser(description="Your script description")
 parser.add_argument('--user_input', type=str, help='User input to add to prompt')
+parser.add_argument('--schedule', action='store_true', help='Call ask_for_times')
+parser.add_argument('--confirm', action='store_true', help='Call confirm_times')
 
 args = parser.parse_args()
 user_input = args.user_input
@@ -107,7 +109,7 @@ def get_calendar_events():
 
     return formatted_events
 
-def ask_for_times(my_events, user_input):
+def ask_for_times(my_events, user_input=None):
     user_prompt = f"{user_input}\n" if user_input else ""
 
     prompt = f"""
@@ -125,9 +127,28 @@ def ask_for_times(my_events, user_input):
 
     print(openai_call(prompt))
 
+def confirm_times(my_events, user_input=None):
+    user_prompt = f"{user_input}\n" if user_input else ""
+
+    prompt = f"""
+    I received the following scheduling email with proposed time slots:
+
+    {user_prompt}
+
+    These are the upcoming events for my schedule; please confirm which of the time slots listed above would work for me. 
+
+    {my_events}
+    """
+
+    print(openai_call(prompt))
+
 def main():
     events = get_calendar_events()
-    ask_for_times(events, user_input)
+    
+    if args.schedule:
+        ask_for_times(events, user_input)
+    elif args.confirm:
+        confirm_times(events, user_input)
 
 
 if __name__ == '__main__':
