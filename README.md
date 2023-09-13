@@ -8,10 +8,10 @@ It uses GPT-4; it will not work well with GPT-3.5 or Claude: https://twitter.com
 
 ## Offering times
 
-Run as-is to return ALL availability in your calendar:
+Use the `--schedule` flag. Run as-is to return ALL availability in your calendar:
 
 ```
-$ python smol-scheduler
+$ python smol-scheduler --schedule
 
 Dear [Recipient's Name],
 
@@ -36,7 +36,7 @@ Best regards,
 With additional instructions:
 
 ```
-$ python smol-scheduler.py --user_input "This meeting isn't high priority so only offer time slots right before or after my 12-1pm lunch"
+$ python smol-scheduler.py --schedule --user_input "This meeting isn't high priority so only offer time slots right before or after my 12-1pm lunch"
 
 Dear [Recipient's Name],
 
